@@ -74,6 +74,7 @@ const SignIn = (props) => {
                 </div>
             </div>
             <div className={styles.helpers_block}>
+                <p>SDADASDA</p>
                 { props.usersData ? <Link className={styles.link_bottom_form} to="/rogot-pasword">Forgot password?</Link> : <p className={styles.link_bottom_form} >Nobody registered at this site</p>}
                 <Link className={styles.link_bottom_form} to='/sign-up'>Don't have an account? Sign Up</Link>
             </div>
