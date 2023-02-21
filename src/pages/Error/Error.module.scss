@@ -1,0 +1,16 @@
+.wrapper_content{
+    height: 100vh;
+    background: url('../../img/404.png') no-repeat center;
+    background-size: cover;
+}
+.sight_link{
+    cursor: pointer;
+    border-radius: 0 0 31px;
+    font: 20px Roboto;
+    padding: 30px;
+    color: #fff;
+    background: black;
+    position: absolute;
+    text-decoration: none;
+    text-transform: uppercase;
+}

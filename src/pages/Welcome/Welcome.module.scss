@@ -1,0 +1,42 @@
+.wrapper_welcom{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+    align-items: center;
+}
+.ok_image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+.welcome_txt{
+    font:900 25px Roboto;
+    text-transform: uppercase;
+    color:#F08EB0
+}
+.auth_info{
+    font: 900 30px Roboto;
+    text-transform: uppercase;
+    margin: 10px;
+}
+.mail_info{
+    font: 900 20px Roboto;
+}
+.btn_log_out{
+    width: 151px;
+    text-align: center;
+    padding: 12px 30px;
+    margin-top: 40px;
+    border-radius: 13px;
+    text-decoration: none;
+    background: #8FC9F9;
+    color: black;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.5s all ease-in-out;
+
+    &:hover { 
+        background:#F08EB0
+    }
+}

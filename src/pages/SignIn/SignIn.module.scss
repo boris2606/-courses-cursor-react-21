@@ -1,0 +1,119 @@
+.wrapper_sign_in{
+    width: 100%;
+    height: 100vh;
+    max-width: 450px;
+    margin: 10px auto;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
+.sign_in_form{
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+.sign_in_image{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #F08EB0;
+
+    img{
+        width: 50px;
+        height: 50px;
+        margin: 10px 15px;
+    }
+}
+.sign_in_tit_text{
+    font: 900 30px Roboto;
+    margin: 15px auto 30px;
+}
+.wrapper_form{
+    width: 100%;
+}
+.content_form{
+    display: flex;
+    justify-content: center;
+    flex-flow: column;
+
+}
+.form_field {
+    width: 100%;
+    padding: 10px;
+    color: #ccc;
+    margin-bottom: 10px;
+    background: transparent;
+    border: 1px solid #535353
+}
+.password_wrapper{
+    position: relative;
+}
+.icon_eye_pass{
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    width: 22px;
+}
+.remembre_check {
+    display: none;
+}
+
+.label_sign_in {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+    margin: 10px 0;
+}
+
+.label_sign_in:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #d5d1d1;
+    background:transparent;
+}
+
+.remembre_check:checked + .label_sign_in:before {
+    content: "\2713";
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+    line-height: 17px;
+    background-color: transparent;
+}
+
+.sign_in_btn{
+    margin: 15px 0 25px;
+    width: 100%;
+    height: 35px;
+    border: 0px solid;
+    border-radius: 8px;
+    background: #8FC9F9;
+    color: black;
+    font: 900 14px Roboto;
+    text-transform: uppercase;
+    transition: .3s all ease-in-out;
+    cursor: pointer;
+
+    &:hover{
+        color: black;
+        background:#F08EB0;
+    }
+}
+.helpers_block{
+    display: flex;
+    justify-content: space-between;
+}
+.link_bottom_form{
+    font: 400 13px Roboto;
+    color: #8EC8F9;
+    text-decoration: none;
+}
