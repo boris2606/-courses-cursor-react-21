@@ -34,8 +34,8 @@ const SignIn = (props) => {
         let correctUser = props.usersData.find(user => user.password === passwordValue && user.email === emailValue)
         if (correctUser){
             localStorage.setItem('authPerson', JSON.stringify(correctUser))
+            reloadPage()
             props.history.push('/welcome')
-            // reloadPage()
         }else {
             alert('Невірно вказаний email або пароль')
         }
@@ -69,7 +69,7 @@ const SignIn = (props) => {
                         </div>
                         <input className={styles.remembre_check} type="checkbox" id="myCheckbox" onChange={handlerRemember}/>
                         <label className={styles.label_sign_in} htmlFor="myCheckbox" >Remember me</label>
-                        <Link className={styles.sign_in_btn} to='/welcome' onClick={checkRegisterPerson}>Sign in</Link>
+                        <button className={styles.sign_in_btn} onClick={checkRegisterPerson}>Sign in</button>
                     </form>
                 </div>
             </div>
