@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="https://visionary-gumdrop-b37361.netlify.app">
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </React.StrictMode>
