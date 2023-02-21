@@ -6,14 +6,12 @@ import okIcon from '../../img/ok.png'
 const Welcome = (props) => {
     let usersAuthTemp =localStorage.getItem('authPerson');
     let userAuth = JSON.parse(usersAuthTemp)
-    // function reloadPage() {
-    //     window.location.reload(false)
-    // }
-    // reloadPage()
+
+    // Видалення при виході автоизованого користувачв
     function deleteAuthUser(){
         localStorage.removeItem('authPerson')
     }
-    console.log(userAuth);
+
     return (
         <div className={styles.wrapper_welcom}>
             <img className={styles.ok_image} src={okIcon} alt='Logged'/>
