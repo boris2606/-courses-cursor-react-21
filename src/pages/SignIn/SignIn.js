@@ -69,7 +69,7 @@ const SignIn = (props) => {
                         </div>
                         <input className={styles.remembre_check} type="checkbox" id="myCheckbox" onChange={handlerRemember}/>
                         <label className={styles.label_sign_in} htmlFor="myCheckbox" >Remember me</label>
-                        <button className={styles.sign_in_btn} onClick={checkRegisterPerson}>Sign in</button>
+                        <Link className={styles.sign_in_btn} to='/welcome' onClick={checkRegisterPerson}>Sign in</Link>
                     </form>
                 </div>
             </div>
