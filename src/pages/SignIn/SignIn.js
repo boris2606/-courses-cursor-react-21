@@ -35,7 +35,7 @@ const SignIn = (props) => {
         if (correctUser){
             localStorage.setItem('authPerson', JSON.stringify(correctUser))
             props.history.push('/welcome')
-            reloadPage()
+            // reloadPage()
         }else {
             alert('Невірно вказаний email або пароль')
         }
