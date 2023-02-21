@@ -12,7 +12,10 @@ const SignIn = (props) => {
           [rememberChek,setRememberCheck] = useState(false)
 
     // Пошук користувача в базі по внесеним даним
-    let userInBase = props.usersData.find(user => user.password === passwordValue && user.email === emailValue)
+    let userInBase
+    if (props.usersData){
+        userInBase = props.usersData.find(user => user.password === passwordValue && user.email === emailValue)
+    }
 
     // Посилання на авторизацію
     let linkRef = useRef(null)
