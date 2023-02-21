@@ -47,7 +47,7 @@ const SignIn = (props) => {
     }
     const handleSubmit = (event) => {
         event.preventDefault();
-      };
+    };
 
     function reloadPage() {
         window.location.reload(false)
@@ -74,7 +74,7 @@ const SignIn = (props) => {
                 </div>
             </div>
             <div className={styles.helpers_block}>
-                <Link className={styles.link_bottom_form} to="/rogot-pasword">Forgot password?</Link>
+                { props.usersData ? <Link className={styles.link_bottom_form} to="/rogot-pasword">Forgot password?</Link> : <p className={styles.link_bottom_form} >Nobody registered at this site</p>}
                 <Link className={styles.link_bottom_form} to='/sign-up'>Don't have an account? Sign Up</Link>
             </div>
         </div>
