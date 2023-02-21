@@ -47,10 +47,6 @@ const SignIn = (props) => {
         event.preventDefault();
     };
 
-    function reloadPage() {
-        window.location.reload(false)
-    }
-
     return (
         <div className={styles.wrapper_sign_in}>
             <div className={styles.sign_in_form}>
