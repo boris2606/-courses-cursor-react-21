@@ -10,16 +10,7 @@ const SignIn = (props) => {
     const [emailValue,setEmailValue] = useState(''),
           [passwordValue,setPasswordValue] = useState(''),
           [rememberChek,setRememberCheck] = useState(false)
-
-    // Пошук користувача в базі по внесеним даним
-    let userInBase
-    if (props.usersData){
-        userInBase = props.usersData.find(user => user.password === passwordValue && user.email === emailValue)
-    }
-
-    // Посилання на авторизацію
-    let linkRef = useRef(null)
-
+    
     // Формування кнопки підсказки паролю
     let passwordInput = useRef(null)
     function showPassword () {
@@ -28,33 +19,22 @@ const SignIn = (props) => {
     function hidePassword (){
         passwordInput.current.type = 'password'
     }
-    const regularEmailCheck = /^.{3,}@.{2,}\..{2,}$/i 
-    const regularPasswordCheck = /^(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$/
+
     // Отримання значення з полів
     function handleChange(event) {
-        if (event.target.id === 'emailForm' && regularEmailCheck.exec(event.target.value)){
-            event.target.style.border = '1px solid green'
+        if (event.target.id === 'emailForm'){
             setEmailValue(event.target.value)
-        } else if (event.target.id === 'passwordForm' && regularPasswordCheck.exec(event.target.value)){
-            event.target.style.border = '1px solid green'
+        } else if (event.target.id === 'passwordForm'){
             setPasswordValue(event.target.value)
-        } else {
-            event.target.style.border = '1px solid red'
-        }
-        // Заміна класів для авторизації
-        if (passwordValue && emailValue){
-            linkRef.current.classList.add(`${styles.sign_in_btn}`)
-            linkRef.current.classList.remove(`${styles.disabled}`)
-        } else {
-            linkRef.current.classList.add(`${styles.disabled}`)
-            linkRef.current.classList.remove(`${styles.sign_in_btn}`)
         }
     }
 
     // Перевірка чи зареєстрований користувач та редікт якщо зареєстрований на сторінку вітання
     function checkRegisterPerson(){
-        if (userInBase){
-            localStorage.setItem('authPerson', JSON.stringify(userInBase))
+        let correctUser = props.usersData.find(user => user.password === passwordValue && user.email === emailValue)
+        if (correctUser){
+            localStorage.setItem('authPerson', JSON.stringify(correctUser))
+            props.history.push('/welcome')
         }else {
             alert('Невірно вказаний email або пароль')
         }
@@ -64,9 +44,6 @@ const SignIn = (props) => {
     function handlerRemember(){
         setRememberCheck(!rememberChek)
     }
-    const handleSubmit = (event) => {
-        event.preventDefault();
-    };
 
     return (
         <div className={styles.wrapper_sign_in}>
@@ -76,16 +53,15 @@ const SignIn = (props) => {
                 </div>
                     <p className={styles.sign_in_tit_text}>Sign in</p>
                 <div className={styles.wrapper_form}>
-                    <form className={styles.content_form} onSubmit={handleSubmit}>
+                    <form className={styles.content_form}>
                         <input className={styles.form_field} onChange={handleChange} type='email' placeholder='Email Address *' id='emailForm' required></input>
                         <div className={styles.password_wrapper}>
                             <input className={styles.form_field} ref={passwordInput} onChange={handleChange} type='password' placeholder='Password *' id='passwordForm' required></input>
                             <img className={styles.icon_eye_pass} src={eyeIcon} alt='Show password' onMouseEnter={showPassword} onMouseLeave={hidePassword}/>
                         </div>
                         <input className={styles.remembre_check} type="checkbox" id="myCheckbox" onChange={handlerRemember}/>
-                        {/* <label className={styles.label_sign_in} htmlFor="myCheckbox" >Remember me</label> */}
-                        Встановлення посилання якщо користувача знайдено в системі
-                        <Link className={`${styles.disabled}`} ref={linkRef} to={userInBase ? '/welcome' : '/'} onClick={checkRegisterPerson}>Sign In</Link>
+                        <label className={styles.label_sign_in} htmlFor="myCheckbox" >Remember me</label>
+                        <button className={styles.sign_in_btn} onClick={checkRegisterPerson}>Sign in</button>
                     </form>
                 </div>
             </div>
