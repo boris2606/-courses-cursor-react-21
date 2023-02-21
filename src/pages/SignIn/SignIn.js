@@ -69,14 +69,13 @@ const SignIn = (props) => {
                         </div>
                         <input className={styles.remembre_check} type="checkbox" id="myCheckbox" onChange={handlerRemember}/>
                         <label className={styles.label_sign_in} htmlFor="myCheckbox" >Remember me</label>
-                        <button className={styles.sign_in_btn} onClick={checkRegisterPerson}>Sign in</button>
+                        <Link className={styles.sign_in_btn} to='/welcome' onClick={checkRegisterPerson}>Sign in</Link>
                     </form>
                 </div>
             </div>
             <div className={styles.helpers_block}>
                 { props.usersData ? <Link className={styles.link_bottom_form} to="/rogot-pasword">Forgot password?</Link> : <p className={styles.link_bottom_form} >Nobody registered at this site</p>}
                 <Link className={styles.link_bottom_form} to='/sign-up'>Don't have an account? Sign Up</Link>
-                <Link className={styles.link_bottom_form} to='/welcome'>WELCOME</Link>
             </div>
         </div>
     );
