@@ -10,7 +10,13 @@ const SignIn = (props) => {
     const [emailValue,setEmailValue] = useState(''),
           [passwordValue,setPasswordValue] = useState(''),
           [rememberChek,setRememberCheck] = useState(false)
-    
+
+    // Пошук користувача в базі по внесеним даним
+    let userInBase = props.usersData.find(user => user.password === passwordValue && user.email === emailValue)
+
+    // Посилання на авторизацію
+    let linkRef = useRef(null)
+
     // Формування кнопки підсказки паролю
     let passwordInput = useRef(null)
     function showPassword () {
@@ -19,21 +25,33 @@ const SignIn = (props) => {
     function hidePassword (){
         passwordInput.current.type = 'password'
     }
-
+    const regularEmailCheck = /^.{3,}@.{2,}\..{2,}$/i 
+    const regularPasswordCheck = /^(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{8,}$/
     // Отримання значення з полів
     function handleChange(event) {
-        if (event.target.id === 'emailForm'){
+        if (event.target.id === 'emailForm' && regularEmailCheck.exec(event.target.value)){
+            event.target.style.border = '1px solid green'
             setEmailValue(event.target.value)
-        } else if (event.target.id === 'passwordForm'){
+        } else if (event.target.id === 'passwordForm' && regularPasswordCheck.exec(event.target.value)){
+            event.target.style.border = '1px solid green'
             setPasswordValue(event.target.value)
+        } else {
+            event.target.style.border = '1px solid red'
+        }
+        // Заміна класів для авторизації
+        if (passwordValue && emailValue){
+            linkRef.current.classList.add(`${styles.sign_in_btn}`)
+            linkRef.current.classList.remove(`${styles.disabled}`)
+        } else {
+            linkRef.current.classList.add(`${styles.disabled}`)
+            linkRef.current.classList.remove(`${styles.sign_in_btn}`)
         }
     }
 
     // Перевірка чи зареєстрований користувач та редікт якщо зареєстрований на сторінку вітання
     function checkRegisterPerson(){
-        let correctUser = props.usersData.find(user => user.password === passwordValue && user.email === emailValue)
-        if (correctUser){
-            localStorage.setItem('authPerson', JSON.stringify(correctUser))
+        if (userInBase){
+            localStorage.setItem('authPerson', JSON.stringify(userInBase))
         }else {
             alert('Невірно вказаний email або пароль')
         }
@@ -62,8 +80,9 @@ const SignIn = (props) => {
                             <img className={styles.icon_eye_pass} src={eyeIcon} alt='Show password' onMouseEnter={showPassword} onMouseLeave={hidePassword}/>
                         </div>
                         <input className={styles.remembre_check} type="checkbox" id="myCheckbox" onChange={handlerRemember}/>
-                        <label className={styles.label_sign_in} htmlFor="myCheckbox" >Remember me</label>
-                        <Link className={styles.sign_in_btn} to='/welcome' onClick={checkRegisterPerson}>Sign in</Link>
+                        {/* <label className={styles.label_sign_in} htmlFor="myCheckbox" >Remember me</label> */}
+                        Встановлення посилання якщо користувача знайдено в системі
+                        <Link className={`${styles.disabled}`} ref={linkRef} to={userInBase ? '/welcome' : '/'} onClick={checkRegisterPerson}>Sign In</Link>
                     </form>
                 </div>
             </div>
