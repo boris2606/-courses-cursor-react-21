@@ -1,9 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState} from 'react'
 import styles from './ForgotPassword.module.scss'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import titleIcon from '../../img/padlock.png'
+import { useSpring,animated } from '@react-spring/web'
 
 const ForgotPassword = (props) => {
+    // Формування стилю анімації бібліатеки
+    const springs = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        delay: 300
+    })
+
     // Слідкування за станом введення імейлу
     const [email,setEmail] = useState('')
     // Регулярний вираз для перевірки імейлу
@@ -28,7 +36,7 @@ const ForgotPassword = (props) => {
     }
 
     return (
-        <div className={styles.wrapper_forgot}>
+        <animated.div className={styles.wrapper_forgot} style={springs}>
             <div className={styles.wrapper_img}>
                 <img className={styles.forgot_image} src={titleIcon} alt='Lock'></img>
             </div>
@@ -43,7 +51,7 @@ const ForgotPassword = (props) => {
                 {email && checkRegisterPersonEmail ? <button className={styles.send_email_btn} onClick={sendEmail}>Send email</button> : false}
             </form>
             <Link className={styles.send_email_btn} to='/'>Return sign in</Link>
-        </div>
+        </animated.div>
     );
 };
 

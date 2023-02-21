@@ -3,9 +3,16 @@ import titleIcon from '../../img/padlock.png'
 import eyeIcon from '../../img/eye.png'
 import { Link } from 'react-router-dom';
 import styles from './SignUp.module.scss'
-
+import { useSpring,animated } from '@react-spring/web'
 
 const SignUp = (props) => {
+    // Формування стилю анімації бібліатеки
+    const springs = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        delay: 300
+    })
+
     // Формування масиву користувачів
     let users = []
 
@@ -81,7 +88,7 @@ const SignUp = (props) => {
     }
     
     return (
-        <div className={styles.wrapper_sign_in}>
+        <animated.div className={styles.wrapper_sign_in} style={springs}>
             <div className={styles.sign_in_form}>
                 <div className={styles.sign_in_image}>
                     <img src={titleIcon} alt='lock'></img>
@@ -110,7 +117,7 @@ const SignUp = (props) => {
             <div className={styles.helpers_block}>
                 <Link className={styles.link_bottom_form} to='/'>Already have an account? Sign in</Link>
             </div>
-        </div>
+        </animated.div>
     );
 };
 

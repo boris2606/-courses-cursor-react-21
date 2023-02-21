@@ -1,10 +1,17 @@
-import React, {useRef,useState} from 'react';
+import React, {useRef,useState} from 'react'
 import styles from './SignIn.module.scss'
 import titleIcon from '../../img/padlock.png'
 import eyeIcon from '../../img/eye.png'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import { useSpring,animated } from '@react-spring/web'
 
 const SignIn = (props) => {
+    // Формування стилю анімації бібліатеки
+    const springs = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        delay: 300
+    })
 
     // Стани полів
     const [emailValue,setEmailValue] = useState(''),
@@ -46,7 +53,7 @@ const SignIn = (props) => {
     }
 
     return (
-        <div className={styles.wrapper_sign_in}>
+        <animated.div className={styles.wrapper_sign_in} style={springs}>
             <div className={styles.sign_in_form}>
                 <div className={styles.sign_in_image}>
                     <img src={titleIcon} alt='lock'></img>
@@ -69,7 +76,7 @@ const SignIn = (props) => {
                 { props.usersData ? <Link className={styles.link_bottom_form} to="/rogot-pasword">Forgot password?</Link> : <p className={styles.link_bottom_form} >Nobody registered at this site</p>}
                 <Link className={styles.link_bottom_form} to='/sign-up'>Don't have an account? Sign Up</Link>
             </div>
-        </div>
+        </animated.div>
     );
 };
 
