@@ -34,8 +34,6 @@ const SignIn = (props) => {
         let correctUser = props.usersData.find(user => user.password === passwordValue && user.email === emailValue)
         if (correctUser){
             localStorage.setItem('authPerson', JSON.stringify(correctUser))
-            props.history.push('/welcome')
-            reloadPage()
         }else {
             alert('Невірно вказаний email або пароль')
         }
@@ -48,10 +46,6 @@ const SignIn = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
     };
-
-    function reloadPage() {
-        window.location.reload(false)
-    }
 
     return (
         <div className={styles.wrapper_sign_in}>
